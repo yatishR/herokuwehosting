@@ -12,9 +12,11 @@ import cors from 'cors'
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer);
+const port = process.env.port || io ;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+
 mongoose.set("toJSON",{
     virtuals:true,
     transform:(_, converted)=>{
