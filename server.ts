@@ -2,12 +2,11 @@ console.log("server");
 import express from "express";
 import {Server, createServer} from "http";
 import mongoose from "mongoose";
-import * as usersController from "./controller/users";
-import * as boardsController from "./controller/boards";
-import * as addressController from "./controller/address"
-import * as logOutController from "./controller/logout"
 import bodyParser from "body-parser";
-import authMiddleware from './middlewares/auth';
+import * as usersController from "./src/controller/users";
+import * as boardsController from "./src/controller/boards";
+import * as addressController from "./src/controller/address";
+import authMiddleware from "./src/middlewares/auth";
 import cors from 'cors'
 const app = express();
 const httpServer = createServer(app);
@@ -37,7 +36,7 @@ app.get('/api/boards', authMiddleware,boardsController.getBoards);
 app.post('/api/boards', authMiddleware,boardsController.createBoard);
 app.get('/api/address', authMiddleware,addressController.getUserAddress);
 app.post('/api/address', authMiddleware,addressController.createUsreAddess);
-app.get('/api/LogoutUser', authMiddleware,logOutController.LogoutUser);
+// app.get('/api/LogoutUser', authMiddleware,logOutController.LogoutUser);
 
 
 io.on('connectin',()=>{
